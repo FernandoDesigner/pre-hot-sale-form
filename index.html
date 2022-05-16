@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form class="frm" name="form-google">
+      <div class="form-container">
+        <div class="form-title">
+          <h1>Registra Tu Ticket</h1>
+          <p>Ingresa los datos cuidadosamente y participa en el concurso</p>
+        </div>
+        <div class="frm-body">
+          <div class="form-input">
+            <input class="input-frm" id="nombre" name="Nombre" type="text" placeholder="Nombre" required>
+          </div>
+          <div class="form-input">
+            <input class="input-frm" id="tel" name="Telefono" type="number" placeholder="Telefono"  required>
+          </div>
+          <div class="form-input">
+            <input class="input-frm" id="email" name="Correo" type="email" placeholder="Email" required>
+          </div>
+
+          <div class="form-button">
+            <button class="btn-send" type="submit">Enviar datos</button>
+          </div>
+        </div>
+    
+      </div>
+      </form>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script>
+       
+        function reset(){
+          let nom = document.getElementById('nombre').value="";
+          let tel = document.getElementById('tel').value="";
+          let email = document.getElementById('email').value="";
+          window.alert("Registro guardado")
+        }
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbztlov2WwcQ7T-IR5NsZpHc6HhFmgcvkCyA1Y-bTcmPz9iOmwBlO6FRAOLCyNdOMKBE/exec'
+        const form = document.forms['form-google']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => this.reset())
+            .catch(error => window.alert('algo salio mal, intentalo de nuevo'))
+        })
+      </script>
+
+</body>
+</html>
